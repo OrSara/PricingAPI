@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+import numpy as np
+from scipy.stats import norm
+
+Nor = norm.cdf
+
+def BS_CALL(S, K, T, r, sigma):
+    d1 = (np.log(S/K) + (r + sigma**2/2)*T) / (sigma*np.sqrt(T))
+    d2 = d1 - sigma * np.sqrt(T)
+    return S * Nor(d1) - K * np.exp(-r*T)* Nor(d2)
+
+def BS_PUT(S, K, T, r, sigma):
+    d1 = (np.log(S/K) + (r + sigma**2/2)*T) / (sigma*np.sqrt(T))
+    d2 = d1 - sigma* np.sqrt(T)
+    return K*np.exp(-r*T)*Nor(-d2) - S*Nor(-d1)
