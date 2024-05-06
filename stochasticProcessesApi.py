@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, jsonify, request,send_file
 import pandas as pd
-from Heston_model import *
+from HestonModel import *
 from GBM import *
 from yahoofinance import *
 from BlackScholes import *
@@ -13,6 +13,7 @@ app = Flask(__name__)
 @app.route('/Heston', methods = ['GET'])
 #Heston model
 def getHeston():
+    M = request.args.get('M', type=int, default = 1000)
     S0 = request.args.get('S0', type=float, default = 1.0)
     K = request.args.get('K', type=float, default = 1.1)
     T = request.args.get('T', type=int, default = 1)
@@ -22,7 +23,6 @@ def getHeston():
     kappa = request.args.get('kappa', type=float) 
     theta = request.args.get('theta', type=float) 
     sigma = request.args.get('sigma', type=float)
-    M = request.args.get('M', type=int, default = 1000)
         
     S = Heston_model(S0, v0, kappa, theta, sigma, rho, T, M, r)
     VcMC, VpMC, scMC, spMC = pricing(M, T, r, S, K)
