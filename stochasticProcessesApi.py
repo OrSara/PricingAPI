@@ -40,12 +40,12 @@ def getHeston():
 @app.route('/GBM', methods = ['GET'])
 #GeometricBrownianMotion
 def getGBM():
+    M = request.args.get('M', type=int, default = 1000)
     S0 = request.args.get('S0', type=float, default = 1.0)
     K = request.args.get('K', type=float, default = 1.1)
     T = request.args.get('T', type=int, default = 1)
     r = request.args.get('r', type=float, default = getRiskFreeRate())
     sigma = request.args.get('sigma', type=float)
-    M = request.args.get('M', type=int, default = 1000)
 
     S = geom_brow_motion(S0, r, sigma, T, M)
     VcMC, VpMC, scMC, spMC = pricing(M, T, r, S, K)
@@ -64,14 +64,14 @@ def getGBM():
 #BlackScholes
 @app.route('/BS', methods = ['GET']) 
 def getBS():
-    S = request.args.get('S0', type=float, default = 1.0)
+    S0 = request.args.get('S0', type=float, default = 1.0)
     K = request.args.get('K', type=float, default = 1.1)
     T = request.args.get('T', type=int, default = 1)
     r = request.args.get('r', type=float, default = getRiskFreeRate())
     sigma = request.args.get('sigma', type=float)
     
-    VcMC = BS_CALL(S, K, T, r, sigma)
-    VpMC = BS_PUT(S, K, T, r, sigma)
+    VcMC = BS_CALL(S0, K, T, r, sigma)
+    VpMC = BS_PUT(S0, K, T, r, sigma)
     
     return jsonify({
         "BlackScholes":{
