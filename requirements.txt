@@ -1,4 +1,3 @@
-aext_assistant_server @ file:///C:/b/abs_83f6_dptu3/croot/aext-assistant-server_1698104652697/work/backend_lib/assistant
 aext_core @ file:///C:/b/abs_abml9re1ky/croot/aext-core_1698107590809/work
 aext_core_server @ file:///C:/b/abs_dev7ac1xol/croot/aext-core-server_1698098831843/work/backend_lib/core
 aext_shared @ file:///C:/b/abs_306_rwdm13/croot/aext-shared_1698068353440/work/backend_lib/shared
