@@ -23,7 +23,7 @@ def getHeston():
     kappa = request.args.get('kappa', type=float) 
     theta = request.args.get('theta', type=float) 
     sigma = request.args.get('sigma', type=float)
-        
+     
     S = Heston_model(S0, v0, kappa, theta, sigma, rho, T, M, r)
     VcMC, VpMC, scMC, spMC = pricing(M, T, r, S, K)
    
